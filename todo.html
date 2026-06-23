@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #121212;
+        color: white;
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    div {
+        width: 400px;
+    }
+
+    input {
+        width: 75%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        background-color: #2a2a2a;
+        color: white;
+        font-size: 16px;
+    }
+
+    input::placeholder {
+        color: #aaa;
+    }
+
+    button {
+        padding: 12px 18px;
+        border: none;
+        border-radius: 8px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #todoContainer {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    #todoContainer li {
+        background-color: #1f1f1f;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-left: 4px solid #4CAF50;
+    }
+
+    #todoContainer li:hover {
+        background-color: #2d2d2d;
+        transform: translateX(5px);
+    }
+</style>
+
+<body>
+    <div>
+        <input id="todoInput" type="text" placeholder="Enter Your task here">
+        <button id="addButton">Add</button>
+    </div>
+    <div>
+        <ul id="todoContainer"></ul>
+    </div>
+    <script>
+        const addButton = document.getElementById("addButton");
+        const todoInputRef = document.getElementById("todoInput");
+        const todoContainerRef = document.getElementById("todoContainer");
+
+        addButton.addEventListener('click', function () {
+            const value = todoInputRef.value;  //you use .value to get or set the current text inside an interactive HTML element. It works on form tags like <input>, <textarea>, and <select>
+
+            console.log(value); 
+
+            const li = document.createElement('li');
+            li.innerText = value;
+
+            li.addEventListener('dblclick', function () {
+                li.remove();
+                li = null;
+            })
+            todoContainerRef.appendChild(li);
+
+            todoInputRef.value = '';
+        });
+    </script>
+</body>
+
+</html>
