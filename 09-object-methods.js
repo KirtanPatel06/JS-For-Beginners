@@ -6,14 +6,17 @@ const artifact = {
 }
 
 const keys = Object.keys(artifact);
-const values = Object.values(artifact);
+const values = Object.values(artifact); 
 const entries = Object.entries(artifact);
 
+// Object.keys() & Object.values() returns an array of keys & values respectively.
+// Object.entries returns a nested array, in which each nested array is a key:value pair.
 console.log(keys);
 console.log(values);
-console.log(entries);
+console.log("Entries:",entries);
 
-for(const [key, value]  of Object.entries(artifact)){
+
+for(const [key, value] of entries){
     console.log(`${key}: ${value}`);
 }
 // ----------------------------------------------------------------------------------------------------------------
@@ -24,20 +27,22 @@ const pricelist =[
     ["Iron Sword", "5000"]
 ]
 
+// Object.fromEntries() converts a list of key:value pairs into a standard JavaScript Object.
 const priceObject = Object.fromEntries(pricelist);
 console.log(priceObject);
 // ----------------------------------------------------------------------------------------------------------------
 
 const secureArtifacts = {name: "Ruby Pendant"};
 
-// .defineProperty() is used to manually define each property of a key in a object. Using it we can manipulate the properties of our  key(i.e. catelogId).   
+// .defineProperty() is used to manually define each property of a key in a object. Using it we can manipulate the properties of our key(i.e. catelogId).   
 Object.defineProperty(secureArtifacts, "catelogId", {
     value: "Secure - 999",
     writable: false, 
     enumerable: false,
     configurable: false 
 });
-// Here above our key(i.e. catelogId) is add using .defineProperty() in a object named "secureArticfats".
+
+// Here above, our key(i.e. catelogId) is add using .defineProperty() in a object named "secureArticfats".
 
 // "value:" is used to give the value to that property.
 
@@ -56,17 +61,17 @@ for(const [key, value] of Object.entries(secureArtifacts)){
     console.log(`looping-> ${key}: ${value} (catelogId is not looped)`);
 } // the "catelogId" will not be looped beacuse "enumerable:" property is set to "false".
 
-console.log("-------------------------------------------------");
+// console.log("-------------------------------------------------");
 console.log("Object -> ", secureArtifacts);
 
-console.log(`Is catelogId present in secureArtifacts -> ${"catelogId" in secureArtifacts}`); 
+console.log(`Is catelogId present in secureArtifacts -> ${"catelogId" in secureArtifacts}`);
 // the above line returns true if the key "catelogId" is present in secureArtifacts
-console.log(`is catelogId is it's own key ->  ${secureArtifacts.hasOwnProperty("catelogId")}`); 
+console.log(`is catelogId is it's own key ->  ${secureArtifacts.hasOwnProperty("catelogId")}`);
 //the above line returns true if "catelogId" is it's own key and not inherited from anyone.
 
 console.log(`Is toString present in secureArtifacts -> ${"toString" in secureArtifacts}`);
 console.log(`is toString is it's own key -> ${secureArtifacts.hasOwnProperty("toString")}`);
-console.log("-------------------------------------------------");
+// console.log("-------------------------------------------------");
 
 // .getOwnPropertyDescriptor() returns the properties of a key(i.e. cateLogId)
 let descriptor = Object.getOwnPropertyDescriptor(secureArtifacts, "catelogId");
