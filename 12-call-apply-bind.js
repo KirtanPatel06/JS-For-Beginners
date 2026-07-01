@@ -33,8 +33,33 @@ console.log("Using .apply() ->", cookDish.apply(guptaKitchen, guptaOrder));
 
 // You can also use spread Operator(...) with .call(): Arguments are passed using spread operator(...)
 // Using (...) with .call()
-const rajBhog = ["Chhappan Bhog", "Shahi"]
+
+const rajBhog = ["Chhappan Bhog", "Shahi"];
 console.log("Using spread Operator(...) with .call() ->", cookDish.call(rajaKitchen, ...rajBhog));
+
+// const rajBhog = {ingredient:"Chhappan Bhog", style:"Shahi"};
+
+// rajBhog[Symbol.iterator] = function(){
+//     const properties = Object.entries(this);
+//     let index = 0;
+
+//     // 2. The method must return an iterator object
+//     return {
+//       // 3. The iterator object must have a next() function
+//       next() {
+//         if (index < properties.length) {
+//           const [role, name] = properties[index++];
+//           // Custom behavior: format the output string dynamically
+//           return { value: `${name}`, done: false };
+//         }
+//         // Tell the loop to stop
+//         return { value: undefined, done: true };
+//       }
+//     };
+// }
+// console.log("Using spread Operator(...) with .call() ->", cookDish.call(rajaKitchen, ...rajBhog));
+
+
 
 console.log("-----------------------------------------------------------------------------------------");
 // ------------------------------------------------------------------------------------------------------

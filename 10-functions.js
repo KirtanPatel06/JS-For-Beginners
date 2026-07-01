@@ -211,25 +211,27 @@ const potionShop = (function () {
     },
 
     getStock() {
-      return inventory;
+      return ++inventory;
     }
   }
 })()
 
-potionShop = {
-  brew() {
-    inventory++;
-    return `Brew Potion #${inventory}`;
-  },
+// potionShop = {
 
-  getStock() {
-    return inventory;
-  }
-}
+//   brew: function(){
+//     inventory++;
+//     return `Brew Potion #${inventory}`;
+//   }, 
+  
+//   getStock: function(){
+//     return ++inventory;
+//   }
+// }
 
 console.log(potionShop);
 console.log(potionShop.brew);
 console.log(potionShop.brew());
+console.log(potionShop.getStock());
 
 // MMMMMIIIIMMMMPPPPP: In IFFE function you cannot access its variable like (potionShop.inventory). If you acces them then it return undefined.
 console.log(potionShop.inventory);
@@ -248,6 +250,7 @@ function makeFunc() {
 }
 
 const myFunc = makeFunc();
+
 myFunc();
 
 

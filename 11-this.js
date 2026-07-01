@@ -87,7 +87,7 @@ const filmSet = {
             console.log("Nested Arrow function(Nested Inside a Normal Funtion), this.crew ->", this.crew);
 
             // Double Nested Arrow Function
-            const arrangeFloodLights = () =>{
+            const arrangeFloodLights = () => {
                 console.log("Double Nested Arrow Function, this.crew ->", this.crew);
             }
             arrangeFloodLights();
@@ -144,12 +144,23 @@ console.log("-------------------------------------------------------------------
 
 const actor = {
     name: "Ranveer",
-    bow(){
+    bow: function(){
         return `${this.name} takes the Bow`;
+    },
+}
+
+// detachedBow = function(){
+//     return `${this.name} takes the Sword`;
+// }
+
+const actor_2 = {
+   name: "Chiku",
+    bow: function(){
+        return `${this.name} takes the Sword`;
     }
 }
 
-const detachedBow = actor.bow;
+const detachedBow = actor_2.bow.bind(actor);
 console.log(detachedBow()); //It will print "undefined takes the Bow".
 
 // So Why "undefined" is printed instead of "Ranveer"?

@@ -15,5 +15,5 @@ function bootNavigation(mapLoaded){
 }
 
 console.log(bootNavigation(true));
-console.log("-----------------------------------------------------------------------------------------");
+console.log("----------------------------------------------------------------------------------------");
 console.log(bootNavigation(false));

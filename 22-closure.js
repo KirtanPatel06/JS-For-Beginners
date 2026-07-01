@@ -4,6 +4,7 @@ function makeFunc(){
     function displayName(){
         console.log(name);
     }
+
     return displayName;
 }
 
@@ -157,8 +158,7 @@ nidhi.blinkit(); // again nidhi.blinkit() will not give same O/P, because it's (
 console.log("------------------------------------------");
 // =================================================================
 
-const cups = ["blue", "green", "yellow", "orange", "red"];
-
-// cups.map();
+// const cups = ["blue", "green", "yellow", "orange", "red"];
+// .map()
 
 
