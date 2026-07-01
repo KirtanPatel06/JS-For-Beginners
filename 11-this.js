@@ -150,18 +150,20 @@ const actor = {
 }
 
 // detachedBow = function(){
-//     return `${this.name} takes the Sword`;
+//     return `${this.name} takes the Bow`;
+// }
+const detachedBow = actor.bow;
+console.log(detachedBow()); //It will print "undefined takes the Bow".
+
+// const actor_2 = {
+//    name: "Chiku",
+//     bow: function(){
+//         return `${this.name} takes the Sword`;
+//     }
 // }
 
-const actor_2 = {
-   name: "Chiku",
-    bow: function(){
-        return `${this.name} takes the Sword`;
-    }
-}
-
-const detachedBow = actor_2.bow.bind(actor);
-console.log(detachedBow()); //It will print "undefined takes the Bow".
+// const detachedBow = actor.bow.bind(actor_2);
+// console.log(detachedBow()); // It will print "Chiku takes the Bow".
 
 // So Why "undefined" is printed instead of "Ranveer"?
 // Ans:- 
