@@ -92,6 +92,13 @@ Array.prototype.last = function(){
 console.log([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].last());
 console.log(["Anni", "Sexa", "Mumy", "Derek"].last());
 
+// creating own .middle() function for array's
+Array.prototype.middle = function(){
+    return this[(0 + this.length - 1)/2];
+}
+
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 456, 876];
+console.log("Middle:", array.middle());
 
 console.log("-> Created a .myReduce() method works same as inbuilt .reduce()");
 Array.prototype.myReduce = function(callback, initialValue){
@@ -111,6 +118,8 @@ Array.prototype.myReduce = function(callback, initialValue){
 console.log([1, 2, 3].myReduce((acc, curr) => {
     return acc + curr;
 }, 0));
+
+
 
 console.log("-----------------------------------------------------------------------------------------");
 // ------------------------------------------------------------------------------------------------------

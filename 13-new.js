@@ -29,7 +29,6 @@ function TataCar(chasisNumber, modelName){
     this.fuelLevel = 100;
 }
 
-
 TataCar.prototype.status = function (){
     return `${this.modelName} #${this.chasisNumber} | Fuel: ${this.fuelLevel}`;
 }

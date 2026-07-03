@@ -141,13 +141,13 @@ class Debutant{
         //     return `${this.name} Walks Out for Debut`;
         //}
     }
-        walkOut(){
-            'strict mode';
-            return `${this.name} Walks Out for Debut`;
-        }   
+
+    walkOut = function(){
+        'strict mode';
+        return `${this.name} Walks Out for Debut`;
+    }   
 }
 
 const debutant1 = new Debutant("Yuvraj Singh");
 const somethingFromLastClass = debutant1.walkOut;
 console.log(somethingFromLastClass());
-
