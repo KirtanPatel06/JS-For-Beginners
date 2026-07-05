@@ -100,17 +100,13 @@ Array.prototype.middle = function(){
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 456, 876];
 console.log("Middle:", array.middle());
 
+
 console.log("-> Created a .myReduce() method works same as inbuilt .reduce()");
 Array.prototype.myReduce = function(callback, initialValue){
     let accumulator = initialValue;
 
     for(let i = 0; i < this.length; i++){
-        accumulator = callback(
-            accumulator,
-            this[i],
-            i,
-            this
-        );
+        accumulator = callback(accumulator, this[i], i, this);
     }
     return accumulator;
 }   
@@ -118,7 +114,6 @@ Array.prototype.myReduce = function(callback, initialValue){
 console.log([1, 2, 3].myReduce((acc, curr) => {
     return acc + curr;
 }, 0));
-
 
 
 console.log("-----------------------------------------------------------------------------------------");
