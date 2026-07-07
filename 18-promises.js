@@ -8,32 +8,40 @@
 
 // Iski wajah se time waste bhi nahi hoga aur hame response ka intezzar bhi nahi karna padega aur hamara code ka execution aage chalta rahega.
 
-
 // Promises are newly introduced in JS, before it we have (callbacks) as shown below
 // CREATING CALLBACKS
-function prepareDishCallBack(dish, callback){
-    setTimeout(() => callback(null, {dish, status: "prepared"}, 100));
+function prepareDishCallBack(dish, callback) {
+    setTimeout(() => {
+        callback(null, { dish, status: "prepared" });
+    }, 2000);
 }
 
-function prepareOrderCallBack(order, callback){
-    setTimeout(() => callback(null, {...order, status: "picked up"}, 100));
+function prepareOrderCallBack(order, callback) {
+    setTimeout(() => {
+        callback(null, { ...order, status: "picked up" });
+    }, 1500);
 }
 
-function deliverOrderCallBack(order, callback){
-    setTimeout(() => callback(null, {...order, status: "delivered"}, 100));
+function deliverOrderCallBack(order, callback) {
+    setTimeout(() => callback(null, { ...order, status: "delivered" }), 3000);
 }
 
 // CONSUMING CALLBACKS
-prepareDishCallBack("Frankie", (error, order) => {
-    if(error) return console.log(error);
-    prepareOrderCallBack(order, (error, order) => {
-        if(error) return console.log(error);
-        deliverOrderCallBack(order, (error, order) => {
-            if(error) return console.log(error);
-            console.log(`${order.dish}: ${order.status}`);
-        })
-    })
-})
+// prepareDishCallBack("Frankie", (error, order) => {
+//     if (error) return console.log(error.message);
+//     console.log(`${order.dish}: ${order.status}`); // dish prepare thai gai
+
+//     prepareOrderCallBack(order, (error, order) => {
+//         if (error) return console.log(error.message);
+//         console.log(`${order.dish}: ${order.status}`); // pick up
+
+//         deliverOrderCallBack(order, (error, order) => {
+//             if (error) return console.log(error.message);
+//             console.log(`${order.dish}: ${order.status}`);
+//         });
+//     });
+// });
+
 
 // Ye jo upar hamne callbacks use karke handle kiya (jo ki 'promises' aane se pehle karte the log isko use) uska syntax aur way of writting bohot difficult hai kyunki callbacks hai to ek ke andar dusra function execute karna padta hai.
 // Isliye abhi ham 'promises' use krte hai kyunki wo likhne me aur samajhne me easy hai.
@@ -59,15 +67,15 @@ function prepareOrder(dish){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if(!dish){
-                reject(new Error("No dish is there !"));//here no need to throw the Error Explicitly,
+                reject(new Error("No dish is there !"));//here no need to throw the Error       Explicitly,
                                                         // using 'throw' keyword.
                                                         // Because reject() throws it implicitly.
                 return;
             }
             console.log(`${dish} is ready`);
-            resolve({dish, status: "prepared"});
+            resolve({dish, status: 'prepared'});
         }, 1000);
-    })
+    });
 }
 
 function pickOrder(order){
@@ -77,16 +85,22 @@ function pickOrder(order){
                 reject(new Error("No order recieved !"));
                 return;
             }
-            console.log(`${order} is on the way...`);
+            console.log(`${order.dish} is on the way...`);
             resolve({...order, status: "picked"});
         }, 1000);
-    })
+    });
 }
 
 function deliverOrder(order){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log(`${order} is delivered`);
+            // order = null;
+            if(!order){
+                reject(new Error("Chai not delivered !"));
+                return;
+            }
+
+            console.log(`${order.dish} is delivered`);
             resolve({...order, status: "delivered"});
         }, 3000);
     })
@@ -105,14 +119,16 @@ function deliverOrder(order){
 // 1. OnFulfilled (Success): The first argument is a function that runs when the previous promise successfully completes. The result (or returned value) of the previous step is passed into this function.
 // 2. OnRejected (Error): The optional second argument is a function that handles any errors if the promise gets rejected. (Note: It is considered best practice to handle all errors at the very end of the chain using .catch() rather than passing this second argument).
 
-prepareOrder("chai")
-    .then(order => pickOrder(order))
-    .then(order => deliverOrder(order))
-    .catch(error => console.log(error));
+// prepareOrder("chai").then(order => pickOrder(order)).then(order => deliverOrder(order))
+// .catch(error => console.log(error.messsage));
+ 
+async function gamei(){
+    prepareOrder("chai");
+    await pickOrder(order);
+    await deliverOrder(order);
+}
+// resolve ni value .then() ma jase
+// reject ni value .catch() ma jase
 
 console.log("-----------------------------------------------------------------------------------------");
 // ------------------------------------------------------------------------------------------------------
-
-
-
-

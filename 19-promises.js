@@ -23,15 +23,25 @@ promise.then(console.log); //it prints the value return from the resolve(i.e Cha
 
 // ---> By default promise remains in pending state.
 // ---> But it takes two parameters inside [() => {...}] as (resolve, reject) => {...}.
+
 // ---> Promises turant khatam nahi hote, wo thodi der ke baad khatam hote hai, Kyunki uska kaam hi yahi hai ki jo request ayi hai, usse bol de ki "thodi der ruk jaa me apna kuch kaam nipta lu baad me pakka(promise) tera kaam kar dunga."
+
 // ---> Isliye ham setTimeout() ka use karte hai. setTimeout() delay introdue karta hai. Matlab agar koi promise puri karni hai to wo kehta hai ki "thik hai bhai kar dunga par abhi nahi thode time(delay) ke baad karta hu". Isliye kuch delay dene ke liye ham setTimeout() ka use karte hai.
-// ---> setTimeout() do parameters leta hai. setTimeout(kya_kaam_karna_hai, kitne_der_baad_karna_hai);
+
+// ---> setTimeout() do parameters leta hai. 
+// ---> setTimeout(kya_kaam_karna_hai, kitne_der_baad_karna_hai);
+
 // Eg:- setTimeout(() => { resolve("chaicode") }, 1000).
 // ---> upar ke eg. ka matlab hai ki "kuch kaam karna hai (resolve karni hai promise ko aur resolve karke 'chaicode' return karna hai, par 1000ms ke baad karna hai ye kaam)". To ho gaya na ki 'kuch kaam karna, par thodi der ke baad karna hai'. To ye setTimeout() ka kaam hai promises me.
+
 // ---> Ab jab setTimeout() apna kaam kar lega thodi der ke baad, tab agar promise resolve() hui hogi to wo kuch return karegi jaise ki "Chaicode". To wo return value .then() ke andar jaati hai(agar promise resolve hui hai to). Fir ham .then() ke andar promise resolve hone par kuch print ya kuch kaam karva sakte hai.
-// ---> Ek baat aur yaad rakhna ki setTimeout me jo bhi resolve ke andar likha hoga, jaise ki       resolve("Jo bhi yaha likha hoga"), wo sab .then() ke andar aayega jaise ki .then((sab kuch yaha aayega) => {}).
+
+// ---> Ek baat aur yaad rakhna ki setTimeout me jo bhi resolve ke andar likha hoga, jaise ki    resolve("Jo bhi yaha likha hoga"), wo sab .then() ke andar aayega jaise ki .then((sab kuch yaha aayega) => {}).
+
 // ---> Aur ye .then() ka kaam hota hai ki jo bhi value resolve ne di hai, wo value .then() ke andar jo bhi function likha hai ya jo bhi print karva rahe ho aap console.log karke usko wo value de de.
+
 // To agar me aisa likhu ki "promise.then(console.log)". Fir bhi wo value ko print kar dega. kyunki ye to .then() ka kaam hai ki console.log ko "Chaicode" de de. To .then() wo value console.log ko de dega aur console.log usko print bhi kar dega. Aisa jaruri nahi ki ham hamesha aise hi likhe  ki          "promise.then((value) => console.log(value))". Wo to hamne isme bas sirf value ko hold kiya aur baad me usko console.log(value) karke print karwaya. Baki ham direct bhi to value de sakte hai usko.
+
 // ---> Aur console.log ki jagah koi aur function hota jaise ki "myFunction". To ham aisa likh hai ki  "promise.then(myFunction)". Ab myFunction ko to value .then() ne de di kyunki resolve ki value dene ki jimmedaari .then() ki thi. Ab ham myFunction me kuch bhi karva sakte hai jaise ki...
 // const myFunction = (value) => { console.log(value) }. Aise bhi print karwa sakte hai.
 // Matlab .then() hame value de dega ab us value ko kaise lena hai kya karna hai uske saath wo to ham apne tarike se kar sakte hai.
@@ -65,7 +75,7 @@ promise.then(console.log); //it prints the value return from the resolve(i.e Cha
 //      .then((value) => {...})
 //      .then((value) => {...})
 //      .then((value) => {...})
-//      .catch((error) => {...});
+//      .catch((error) => {...})
 // ---> Isse kahte hai promise chaining.
 // ---> Chalo ab samajhte hain ye kaam kese karta hai.
 // ---> Dekho agar Promise resovle hui to wo kuch value return karegi aur hamara 1st .then() usko accept karega. Ab 1st .then() uss value pe kuch kaam karke, ek aur cheez return karega. Ab jo 1st .then() ne return kiya hai usse hamara 2nd .then() accept karega, aur wo bhi kuch return karega. Ab jo 2nd .then() ne return kiya hai usse hamara 3rd .then() accept karega. Aur bas aise hi chalta rahega.
@@ -82,7 +92,7 @@ promise.then(console.log); //it prints the value return from the resolve(i.e Cha
 const secondPromise = new Promise((res, rej) => {
     setTimeout(() => {
         res("3 second ho gaye guyz...");
-    }, 4000)
+    }, 4000);
 })
 
 secondPromise
@@ -105,7 +115,6 @@ secondPromise
 //          undefined
 // Kyunki 1st wala .then() sirf value ko print kar raha hai par kuch return nahi kar raha. Aur 2nd wala  .then() value accept kar raha hai, to by default usme 'undefined' hoga. To 2nd wala .then() jab value ko print karega to 'undefined' print hoga.
 // ------------------------------------------------------------------------------------------------------
-
 
 const turant = Promise.resolve("fatak se ho gaya...");
 console.log(turant);

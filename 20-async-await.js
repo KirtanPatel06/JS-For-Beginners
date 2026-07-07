@@ -277,6 +277,10 @@ async function nice(){
 
 nice();
 
+console.log("Hello");
+
 // const newResult = await hPromise; // Modern JS mein await ko aise bahar bhi use kar sakte hai par 
 // console.log(newResult);              kabhi karna nahi chahiye.
+
+
 
