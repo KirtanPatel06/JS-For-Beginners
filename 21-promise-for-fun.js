@@ -1,8 +1,8 @@
-function sync_micro_macro(){
+function sync_micro_macro() {
     console.log("Swastik");
 
     Promise.resolve("resolved value").then((v) => {
-    console.log("Microtask", v);
+        console.log("Microtask", v);
     });
 
     console.log("Abhishek");
@@ -69,21 +69,32 @@ function sync_micro_macro(){
 //        Abhishek
 // ------------------------------------------------------------------------------------------------------
 //
-// Example with setTimeout: console.log("Start");
-//                      
-//                          setTimeout(() => {
-//                              console.log("Timer");
-//                          }, 0);
-//
-//                          Promise.resolve()
-//                              .then(() => {
-//                                  console.log("Promise");
-//                          });
-//
-//                          console.log("End");
+// Example with setTimeout: 
+// console.log("Start");
 
+// Promise.resolve()
+//     .then(() => {
+//         console.log("Promise");
+//         setTimeout(() => {
+//             console.log("Timer");
+//         }, 0);
+//         console.log("Promise-2");
+//     });
+
+// Promise.resolve().then(() => {console.log("Hello")});
+
+// setTimeout(() => {
+//     console.log("Timer-2");
+//     Promise.resolve().then(() => {console.log("Hiii")});
+
+//     setTimeout(() => {
+//         Promise.resolve().then(() => {console.log("Hiiii - 2")});
+//         console.log("Maja Ma");
+//     }, 0)
+// }, 1000);
+
+// console.log("End");
 // ------------------------------------------------------------------------------------------------------
-
 // Execution Order: 1. Start          (Sync)
 //                  2. End            (Sync)
 //                  3. Promise        (Microtask)
@@ -110,12 +121,12 @@ function sync_micro_macro(){
 
 // ------------------------------------------------------------------------------------------------------
 
-function boliWater(time){
+function boliWater(time) {
 
     return new Promise((res, rej) => {
         console.log("Water is boiling...");
 
-        if(typeof time !== "number" || time < 0){
+        if (typeof time !== "number" || time < 0) {
             rej(new Error("time should be a number & greater than zero(0)"));
         }
 
@@ -125,11 +136,11 @@ function boliWater(time){
     });
 }
 
-function grindLeaves(){
+function grindLeaves() {
     return Promise.resolve("Leaves grinded...");
 }
 
-function steepTea(time){
+function steepTea(time) {
     return new Promise((res, rej) => {
         setTimeout(() => {
             res("Steeped Tea");
@@ -137,11 +148,11 @@ function steepTea(time){
     });
 }
 
-function addSugar(spoons){
+function addSugar(spoons) {
     return `Added ${spoons} spoons sugar.`;
 }
 
-function stiringTea(time){
+function stiringTea(time) {
     return new Promise((res, rej) => {
         console.log("Stiring the tea...");
         setTimeout(() => {
@@ -150,13 +161,14 @@ function stiringTea(time){
     })
 }
 
-function teaReady(time){
+function teaReady(time) {
     return new Promise((res, rej) => {
         setTimeout(() => {
-            console.log(`Your tea is ready Sir !`);
+            res(`Your tea is ready Sir !`);
         }, time);
     })
 }
+
 
 async function main() {
     sync_micro_macro();
@@ -164,32 +176,52 @@ async function main() {
     // Wait for current microtasks to finish
     await Promise.resolve();
 
-    boliWater(2000)
-    .then((val) => {
-        console.log(val);
-        return grindLeaves();
-    })
-    .then((val) => {
-        console.log(val);
-        return steepTea(2000);
-    })
-    .then((val) => {
-        console.log(val);
-        return addSugar(3);
-    })
-    .then((val) => {
-        console.log(val);
-        return stiringTea(3000);
-    })
-    .then((val) => {
-        console.log(val);
-        return teaReady(4000);
-    })
-    .then((val) => {
-        console.log(val);
-    })
-    .catch((error) => console.log(error.message));
+    let variable = await boliWater(2000);
+    console.log(variable);
+
+    variable = await grindLeaves();
+    console.log(variable);
+
+    variable = await steepTea(2000);
+    console.log(variable);
+
+    variable = await addSugar(3);
+    console.log(variable);
+
+    variable = await stiringTea(3000);
+    console.log(variable);
+
+    variable = await teaReady(4000);
+    console.log(variable);
+
+    console.log("Bhavi ne chaa ?");
     
+    // boliWater(2000)
+    //     .then((val) => {
+    //         console.log(val);
+    //         return grindLeaves();
+    //     })
+    //     .then((val) => {
+    //         console.log(val);
+    //         return steepTea(2000);
+    //     })
+    //     .then((val) => {
+    //         console.log(val);
+    //         return addSugar(3);
+    //     })
+    //     .then((val) => {
+    //         console.log(val);
+    //         return stiringTea(3000);
+    //     })
+    //     .then((val) => {
+    //         console.log(val);
+    //         return teaReady(4000);
+    //     })
+    //     .then((val) => {
+    //         console.log(val);
+    //     })
+    //     .catch((error) => console.log(error.message));
 }
 
 main();
+

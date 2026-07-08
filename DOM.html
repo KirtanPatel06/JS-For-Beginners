@@ -22,7 +22,7 @@
 </head>
 <body>
     <button id="clickButton">Click Me</button>
-
+   
     <script>
         buttonRef = window.document.getElementById("clickButton");
         // buttonRef.remove();  //Iska explanation niche hai
@@ -36,16 +36,14 @@
         //     console.log("Kuch to hua.");
         // }
         // -------------------------------------------------------------------------------
-        // buttonRef.addEventListener('click', function(){  //Iska explanation niche hai
+        // buttonRef.addEventListener('lclick', () => {  //Iska explanation niche hai
         //     console.log("Button Click Hua.");
         // })
         
         // buttonRef.addEventListener('click', function(){  //Iska explanation niche hai
         //     console.log("Kuch to hua.");
         // })
-        // -------------------------------------------------------------------------------
-
-        
+        // -------------------------------------------------------------------------------    
     </script>
 
 </body>
@@ -159,6 +157,7 @@ Button click hone par: fn1() ✅, fn2() ✅ Dono execute honge.
 
 -> Conceptually (samajhne ke liye), browser internally kuch aisa karta hai:
 
+
 const buttonRef = {
     listeners: [],
 
@@ -208,7 +207,7 @@ addEventListener() -> Multiple functions store kar sakta hai.
 
 -> Isliye ham function ko directly pass karne ki jagah ek variable me store kar lete hain. 
 -> Ab ham uss function ka reference jo ki 'onClickHandler' mai hai usko pass karege.
--> Aur listeners[] list mein an fumction ka refernce(i.e onClickHandler) store hoga.
+-> Aur listeners[] list mein ek function ka refernce(i.e onClickHandler) store hoga.
 
 Example: const onClickHandler = function(){
             console.log("Button Click Hua");
